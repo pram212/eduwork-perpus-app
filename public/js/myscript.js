@@ -31,7 +31,6 @@ var app = new Vue({
         store() {
             this.data = {};
             this.method = false;
-            $(".modal-title").text("Tambah Penulis");
             $("#exampleModal").modal();
         },
         update(event, id) {

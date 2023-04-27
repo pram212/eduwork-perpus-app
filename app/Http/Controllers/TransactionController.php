@@ -26,14 +26,8 @@ class TransactionController extends Controller
 
     public function index()
     {
-        if (auth()->user()->can('lihat data peminjaman')) {
-            # code...
-            return view('admin.transactions.index');
-        } else {
-            # code...
-            return abort('403');
-        }
-
+        // $this->authorize('lihat data peminjaman');
+        return view('admin.transactions.index');
     }
 
     public function getData(Request $request)
@@ -61,7 +55,7 @@ class TransactionController extends Controller
                         $btnEdit = '<a href="'.route('transaction.edit', ['transaction' => $transactions->id] ).'" class="btn btn-xs btn-primary">Edit</a>';
                         $btnDetail = '<a href="'.url('transaction/'. $transactions->id).'" class="btn mx-1 btn-xs btn-info">Detail</a>';
                         $btnDelete = "<a href='#' onclick='app.destroy(event, $transactions->id)' class='btn btn-xs btn-danger'> Delete</a>";
-                        return $btnEdit . $btnDetail . $btnDelete;
+                        return '<div class="btn-group" role="group" aria-label="Basic example">' . $btnEdit . $btnDetail . $btnDelete . '</div>';
                     })
                     // tambahkan kolom member
                     ->addColumn('member', function($transactions) {
